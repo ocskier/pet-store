@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { AppBar, Box, Toolbar, Typography, Button } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // import MenuIcon from "@mui/icons-material/Menu"; // for future
 
@@ -12,12 +12,31 @@ const StyledAppBar = styled(AppBar)(() => ({
   justifyContent: 'center',
   minHeight: '6rem',
   backgroundColor: '#21507f !important',
-  background: `linear-gradient( 135deg, #2e1f0deb 0%, #643131bd 49%, #151006 100% );`,
+  background: `linear-gradient( 135deg, #2e1f0deb 0%, #a64d4dbd 49%, #151006 100% );`,
 }));
 
 const StyledToolbar = styled(Toolbar)(() => ({
   '> *': {
     minWidth: '4.5rem',
+  },
+}));
+
+const StyledButton = styled(Button)(() => ({
+  padding: '6px !important',
+  borderRadius: '1rem !important',
+  fontFamily: 'Georgia, serif !important',
+  fontWeight: 'normal !important',
+  textDecoration: 'none !important',
+  fontStyle: 'normal',
+  fontVariant: 'normal',
+  boxShadow: 'rgb(0, 0, 0) 5px 5px 15px 5px',
+  border: '2px solid rgb(28, 110, 164) !important',
+  display: 'inline-block !important',
+  '&:hover': {
+    background: '#8b6a6a !important',
+  },
+  '&:active': {
+    background: 'rgb(21, 16, 6) !important',
   },
 }));
 
@@ -38,18 +57,18 @@ export const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar position="static">
         <StyledToolbar>
-          {/* future dev */}
-          {/* <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}></IconButton> */}
+          {/* placeholder */}
+          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}></IconButton>
           <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
             Jackson's Pet Store
           </Typography>
           {loggedIn ? (
-            <Button onClick={logout} color="inherit">
+            <StyledButton onClick={logout} color="inherit">
               Logout
-            </Button>
+            </StyledButton>
           ) : (
             <Link to="/login">
-              <Button color="inherit">Login</Button>
+              <StyledButton color="inherit">Login</StyledButton>
             </Link>
           )}
         </StyledToolbar>
