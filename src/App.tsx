@@ -10,7 +10,7 @@ import { Dashboard } from './pages/Dashboard';
 import { useGlobalContext } from './context/Store';
 import { types } from './context/actions';
 
-import { readUserPersistence, updateUserPersistence } from './utils/localStorage';
+import { readUserPersistence } from './utils/localStorage';
 
 import './App.css';
 
@@ -21,7 +21,6 @@ const App = () => {
   } = useGlobalContext();
 
   useEffect(() => {
-    // updateUserPersistence({ username: 'test', password: 'password', permissions: 'customer' }); // testing loggedIn
     const user = readUserPersistence();
     Object.keys(user).length && dispatch({ type: types.ME, payload: user });
   }, [dispatch]);
