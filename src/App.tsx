@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { styled } from '@mui/material/styles';
 
 import { ProtectedRoute, PublicRoute } from './routes/Routes';
@@ -40,6 +41,7 @@ const App = () => {
     <div className="App">
       <Header />
       <StyledHero />
+      <ToastContainer />
       <main>
         <Routes>
           <Route
