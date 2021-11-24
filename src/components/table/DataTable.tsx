@@ -3,6 +3,8 @@ import { FC } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Chip } from '@mui/material';
 
+import { Cols } from './Cols';
+
 import { styled } from '@mui/material/styles';
 // import { css } from "@emotion/react";
 
@@ -23,7 +25,7 @@ export const DataTable: FC = () => {
       <StyledTable>
         <DataGrid
           rows={[]}
-          columns={[]}
+          columns={Cols}
           autoHeight={true}
           density="comfortable"
           pageSize={25}
