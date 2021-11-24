@@ -3,6 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 
 import { ProtectedRoute, PublicRoute } from './routes/Routes';
 
+import { Home } from './pages/Home';
+import { Login } from './components/Login';
+import { Dashboard } from './pages/Dashboard';
+
 import { useGlobalContext } from './context/Store';
 import { types } from './context/actions';
 
@@ -30,7 +34,7 @@ const App = () => {
             path="/"
             element={
               <PublicRoute>
-                <p>Home Page</p>
+                <Home />
               </PublicRoute>
             }
           />
@@ -38,7 +42,7 @@ const App = () => {
             path="/login"
             element={
               <PublicRoute auth={loggedIn} restricted={true}>
-                <p>Login View</p>
+                <Login />
               </PublicRoute>
             }
           />
@@ -46,7 +50,7 @@ const App = () => {
             path="/dashboard"
             element={
               <ProtectedRoute auth={loggedIn}>
-                <p>Dashboard</p>
+                <Dashboard />
               </ProtectedRoute>
             }
           />
