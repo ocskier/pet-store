@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { ProtectedRoute, PublicRoute } from './routes/Routes';
 
+import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { Login } from './components/Login';
 import { Dashboard } from './pages/Dashboard';
@@ -27,6 +28,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Header />
       <main>
         <Routes>
           <Route
