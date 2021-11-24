@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { styled } from '@mui/material/styles';
@@ -17,6 +17,7 @@ import { readUserPersistence } from './utils/localStorage';
 import { toast } from './utils/toast';
 
 import './App.css';
+import { getAllPets } from './utils/api';
 
 const StyledHero = styled('div')(() => ({
   background:
@@ -33,11 +34,22 @@ const App = () => {
     dispatch,
   } = useGlobalContext();
 
+  const getPets = useCallback(async () => {
+    try {
+      const res = await getAllPets();
+      const pets = await res.json();
+      console.log(pets);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   useEffect(() => {
     const user = readUserPersistence();
     Object.keys(user).length && dispatch({ type: types.ME, payload: user });
     Object.keys(user).length && toast('Already logged in!', 600);
-  }, [dispatch]);
+    getPets();
+  }, [dispatch, getPets]);
 
   return (
     <div className="App">
