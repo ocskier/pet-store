@@ -8,6 +8,7 @@ import { updateUserPersistence } from '../utils/localStorage';
 export const Login = () => {
   const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
+
   const login = () => {
     const newUser = {
       username: 'tester',
@@ -21,5 +22,6 @@ export const Login = () => {
     updateUserPersistence(newUser);
     navigate('/dashboard');
   };
+
   return <div onClick={login}>Login Form</div>;
 };
