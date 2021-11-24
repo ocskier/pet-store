@@ -1,7 +1,8 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { styled } from '@mui/material/styles';
+import { ClipLoader } from 'react-spinners';
 
 import { ProtectedRoute, PublicRoute } from './routes/Routes';
 
@@ -33,12 +34,15 @@ const App = () => {
     state: { loggedIn },
     dispatch,
   } = useGlobalContext();
+  const [loading, setLoading] = useState(false);
 
   const getPets = useCallback(async () => {
     try {
+      setLoading(true);
       const res = await getAllPets();
       const pets = await res.json();
       console.log(pets);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -56,6 +60,7 @@ const App = () => {
       <Header />
       <StyledHero />
       <ToastContainer />
+      <ClipLoader color={'blue'} loading={loading} css={''} size={100} />
       <main>
         <Routes>
           <Route
