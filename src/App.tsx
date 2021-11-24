@@ -14,6 +14,7 @@ import { useGlobalContext } from './context/Store';
 import { types } from './context/actions';
 
 import { readUserPersistence } from './utils/localStorage';
+import { toast } from './utils/toast';
 
 import './App.css';
 
@@ -35,6 +36,7 @@ const App = () => {
   useEffect(() => {
     const user = readUserPersistence();
     Object.keys(user).length && dispatch({ type: types.ME, payload: user });
+    Object.keys(user).length && toast('Already logged in!', 600);
   }, [dispatch]);
 
   return (

@@ -6,6 +6,7 @@ import App from './App';
 import { GlobalProvider } from './context/Store';
 
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import reportWebVitals from './reportWebVitals';
 
