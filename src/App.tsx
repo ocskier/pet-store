@@ -22,7 +22,7 @@ const StyledHero = styled('div')(() => ({
   backgroundPosition: 'center',
   backgroundSize: 'cover',
   minHeight: '11rem',
-  opacity: 0.9,
+  opacity: 0.92,
 }));
 
 const App = () => {
