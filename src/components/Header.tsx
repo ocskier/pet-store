@@ -33,7 +33,7 @@ const StyledButton = styled(Button)(() => ({
   border: '2px solid rgb(28, 110, 164) !important',
   display: 'inline-block !important',
   '&:hover': {
-    background: '#8b6a6a !important',
+    background: '#d3acda8f !important;',
   },
   '&:active': {
     background: 'rgb(21, 16, 6) !important',
