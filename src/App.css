@@ -12,6 +12,10 @@ main {
   min-height: calc(100vh - 120px);
 }
 
+main > * {
+  margin-bottom: 1rem;
+}
+
 .Toastify__progress-bar--info {
   background: rgb(28, 110, 164) !important;
 }

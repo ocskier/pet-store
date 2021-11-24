@@ -43,7 +43,6 @@ const App = () => {
       const res = await getAllPets();
       const pets = await res.json();
       const cleanPets = cleanPetData(pets);
-      console.log(cleanPets);
       setLoading(false);
     } catch (err) {
       console.log(err);
