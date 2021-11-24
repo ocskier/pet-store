@@ -4,6 +4,7 @@ import { useGlobalContext } from '../context/Store';
 import { types } from '../context/actions';
 
 import { updateUserPersistence } from '../utils/localStorage';
+import { toast } from '../utils/toast';
 
 export const Login = () => {
   const { dispatch } = useGlobalContext();
@@ -19,6 +20,7 @@ export const Login = () => {
       type: types.LOGIN,
       payload: newUser,
     });
+    toast('Successful login!', 1000);
     updateUserPersistence(newUser);
     navigate('/dashboard');
   };

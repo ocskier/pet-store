@@ -7,6 +7,7 @@ import { useGlobalContext } from '../context/Store';
 import { types } from '../context/actions';
 
 import { updateUserPersistence } from '../utils/localStorage';
+import { toast } from '../utils/toast';
 
 const StyledAppBar = styled(AppBar)(() => ({
   justifyContent: 'center',
@@ -49,6 +50,7 @@ export const Header = () => {
 
   const logout = () => {
     dispatch({ type: types.LOGOUT });
+    toast('Logging user out!', 800);
     updateUserPersistence();
     navigate('/');
   };

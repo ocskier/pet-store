@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { styled } from '@mui/material/styles';
 
 import { ProtectedRoute, PublicRoute } from './routes/Routes';
@@ -13,6 +14,7 @@ import { useGlobalContext } from './context/Store';
 import { types } from './context/actions';
 
 import { readUserPersistence } from './utils/localStorage';
+import { toast } from './utils/toast';
 
 import './App.css';
 
@@ -22,7 +24,7 @@ const StyledHero = styled('div')(() => ({
   backgroundPosition: 'center',
   backgroundSize: 'cover',
   minHeight: '11rem',
-  opacity: 0.9,
+  opacity: 0.92,
 }));
 
 const App = () => {
@@ -34,12 +36,14 @@ const App = () => {
   useEffect(() => {
     const user = readUserPersistence();
     Object.keys(user).length && dispatch({ type: types.ME, payload: user });
+    Object.keys(user).length && toast('Already logged in!', 600);
   }, [dispatch]);
 
   return (
     <div className="App">
       <Header />
       <StyledHero />
+      <ToastContainer />
       <main>
         <Routes>
           <Route
