@@ -14,6 +14,7 @@ import { Dashboard } from './pages/Dashboard';
 import { useGlobalContext } from './context/Store';
 import { types } from './context/actions';
 
+import { cleanPetData } from './utils/helpers';
 import { readUserPersistence } from './utils/localStorage';
 import { toast } from './utils/toast';
 
@@ -41,7 +42,8 @@ const App = () => {
       setLoading(true);
       const res = await getAllPets();
       const pets = await res.json();
-      console.log(pets);
+      const cleanPets = cleanPetData(pets);
+      console.log(cleanPets);
       setLoading(false);
     } catch (err) {
       console.log(err);

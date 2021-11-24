@@ -1,5 +1,14 @@
 import { Dispatch } from 'react';
 
+export type Pet = {
+  id: string;
+  category: string;
+  name: string;
+  photo: string;
+  tags: string;
+  status: string;
+};
+
 export type User = {
   username: string;
   password: string;
