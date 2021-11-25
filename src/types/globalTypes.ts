@@ -12,7 +12,7 @@ export type Pet = {
 export type User = {
   username: string;
   password: string;
-  permissions: string;
+  permissions: 'admin' | 'customer';
 };
 
 export interface Action {
