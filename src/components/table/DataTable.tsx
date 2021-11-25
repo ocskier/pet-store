@@ -6,6 +6,8 @@ import { Chip } from '@mui/material';
 
 import { Cols } from './Cols';
 
+import { useGlobalContext } from '../../context/Store';
+
 import { getAllPets } from '../../utils/api';
 import { cleanPetData } from '../../utils/helpers';
 
@@ -26,6 +28,11 @@ const StyledTable = styled('div')(() => ({ flexGrow: 1 }));
 export const DataTable: FC = () => {
   const [loading, setLoading] = useState(false);
   const [pets, setPets] = useState([]);
+
+  const {
+    state: { user },
+  } = useGlobalContext();
+  const { permissions } = user || { permissions: null };
 
   const getPets = useCallback(async () => {
     try {
@@ -51,7 +58,7 @@ export const DataTable: FC = () => {
       <StyledTable>
         <DataGrid
           rows={pets}
-          columns={Cols}
+          columns={permissions === 'admin' ? [...Cols] : permissions === 'customer' ? [...Cols] : [...Cols]}
           autoHeight={true}
           density="comfortable"
           pageSize={25}

@@ -6,12 +6,14 @@ import { types } from '../context/actions';
 import { updateUserPersistence } from '../utils/localStorage';
 import { toast } from '../utils/toast';
 
+import { User } from '../types/globalTypes';
+
 export const Login = () => {
   const { dispatch } = useGlobalContext();
   const navigate = useNavigate();
 
   const login = () => {
-    const newUser = {
+    const newUser: User = {
       username: 'tester',
       password: 'password',
       permissions: 'admin',
