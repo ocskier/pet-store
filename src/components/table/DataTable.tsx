@@ -1,9 +1,13 @@
-import { FC } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { ClipLoader } from 'react-spinners';
 
 import { DataGrid } from '@mui/x-data-grid';
 import { Chip } from '@mui/material';
 
 import { Cols } from './Cols';
+
+import { getAllPets } from '../../utils/api';
+import { cleanPetData } from '../../utils/helpers';
 
 import { styled } from '@mui/material/styles';
 // import { css } from "@emotion/react";
@@ -20,11 +24,33 @@ const StyledTableContainer = styled('div')(() => ({
 const StyledTable = styled('div')(() => ({ flexGrow: 1 }));
 
 export const DataTable: FC = () => {
-  return (
+  const [loading, setLoading] = useState(false);
+  const [pets, setPets] = useState([]);
+
+  const getPets = useCallback(async () => {
+    try {
+      setLoading(true);
+      const res = await getAllPets();
+      const pets = await res.json();
+      const cleanPets = cleanPetData(pets);
+      setPets(cleanPets);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    getPets();
+  }, [getPets]);
+
+  return loading ? (
+    <ClipLoader color={'blue'} loading={loading} css={''} size={100} />
+  ) : (
     <StyledTableContainer>
       <StyledTable>
         <DataGrid
-          rows={[]}
+          rows={pets}
           columns={Cols}
           autoHeight={true}
           density="comfortable"

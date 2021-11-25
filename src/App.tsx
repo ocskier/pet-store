@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { styled } from '@mui/material/styles';
-import { ClipLoader } from 'react-spinners';
 
 import { ProtectedRoute, PublicRoute } from './routes/Routes';
 
@@ -14,12 +13,10 @@ import { Dashboard } from './pages/Dashboard';
 import { useGlobalContext } from './context/Store';
 import { types } from './context/actions';
 
-import { cleanPetData } from './utils/helpers';
 import { readUserPersistence } from './utils/localStorage';
 import { toast } from './utils/toast';
 
 import './App.css';
-import { getAllPets } from './utils/api';
 
 const StyledHero = styled('div')(() => ({
   background:
@@ -35,33 +32,18 @@ const App = () => {
     state: { loggedIn },
     dispatch,
   } = useGlobalContext();
-  const [loading, setLoading] = useState(false);
-
-  const getPets = useCallback(async () => {
-    try {
-      setLoading(true);
-      const res = await getAllPets();
-      const pets = await res.json();
-      const cleanPets = cleanPetData(pets);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
 
   useEffect(() => {
     const user = readUserPersistence();
     Object.keys(user).length && dispatch({ type: types.ME, payload: user });
     Object.keys(user).length && toast('Already logged in!', 600);
-    getPets();
-  }, [dispatch, getPets]);
+  }, [dispatch]);
 
   return (
     <div className="App">
       <Header />
       <StyledHero />
       <ToastContainer />
-      <ClipLoader color={'blue'} loading={loading} css={''} size={100} />
       <main>
         <Routes>
           <Route
