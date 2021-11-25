@@ -16,6 +16,10 @@ main > * {
   margin-bottom: 1rem;
 }
 
+picture > * {
+  width: 100%;
+}
+
 .Toastify__progress-bar--info {
   background: rgb(28, 110, 164) !important;
 }
