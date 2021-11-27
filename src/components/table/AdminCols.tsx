@@ -1,5 +1,6 @@
 import { GridColDef } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
+
+import { SoldSwitchWithLabel } from '../Switch';
 
 import { Pet } from '../../types/globalTypes';
 
@@ -12,6 +13,6 @@ export const AdminCols: GridColDef[] = [
     flex: 1,
     editable: false,
     disableColumnMenu: true,
-    renderCell: ({ row }: { row: Pet }) => <Typography>Mark As Sold</Typography>,
+    renderCell: ({ row }: { row: Pet }) => <SoldSwitchWithLabel row={row} />,
   },
 ];

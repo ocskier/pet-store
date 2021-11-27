@@ -6,7 +6,7 @@ export type Pet = {
   name: string;
   photo: string;
   tags: string;
-  status: string;
+  status: 'available' | 'pending' | 'sold';
 };
 
 export type User = {
