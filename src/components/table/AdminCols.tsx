@@ -1,6 +1,6 @@
 import { GridColDef } from '@mui/x-data-grid';
 
-import { SoldSwitchWithLabel } from '../Switch';
+import { SoldSwitch } from '../switch/SoldSwitch';
 
 import { Pet } from '../../types/globalTypes';
 
@@ -13,6 +13,6 @@ export const AdminCols: GridColDef[] = [
     flex: 1,
     editable: false,
     disableColumnMenu: true,
-    renderCell: ({ row }: { row: Pet }) => <SoldSwitchWithLabel row={row} />,
+    renderCell: ({ row }: { row: Pet }) => <SoldSwitch row={row} />,
   },
 ];

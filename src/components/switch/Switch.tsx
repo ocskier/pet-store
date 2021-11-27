@@ -1,13 +1,9 @@
-import { useCallback, useState } from 'react';
-
-import { FormGroup, FormControlLabel, Switch } from '@mui/material';
+import { FormGroup, Switch } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { Pet } from '../types/globalTypes';
+export const StyledFormGroup = styled(FormGroup)(() => ({ alignItems: 'center', margin: '0.25rem 0 1.25rem' }));
 
-const StyledFormGroup = styled(FormGroup)(() => ({ alignItems: 'center', margin: '0.25rem 0 1.25rem' }));
-
-const SoldSwitch = styled(Switch)(({ theme }) => ({
+export const StyledSwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
   padding: 7,
@@ -49,23 +45,3 @@ const SoldSwitch = styled(Switch)(({ theme }) => ({
     borderRadius: 20 / 2,
   },
 }));
-
-export const SoldSwitchWithLabel = ({ row }: { row: Pet }) => {
-  const [checked, setChecked] = useState(row.status === 'available' ? false : true);
-
-  const changeStatus = useCallback((row: Pet) => {
-    row.status = row.status === 'available' ? 'sold' : 'available';
-    setChecked((oldChecked) => !oldChecked);
-  }, []);
-
-  return (
-    row && (
-      <StyledFormGroup>
-        <FormControlLabel
-          control={<SoldSwitch checked={checked} onChange={() => changeStatus(row)} />}
-          label={row.status}
-        />
-      </StyledFormGroup>
-    )
-  );
-};

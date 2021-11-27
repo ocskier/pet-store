@@ -31,3 +31,8 @@ picture > * {
 .Toastify__progress-bar--info {
   background: rgb(28, 110, 164) !important;
 }
+
+.Toastify__toast--error {
+  background: rgb(240, 181, 171) !important;
+  color: white;
+}

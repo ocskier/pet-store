@@ -8,11 +8,15 @@ import { Cols } from './Cols';
 import { AdminCols } from './AdminCols';
 import { CustomerCols } from './CustomerCols';
 import { PublicCols } from './PublicCols';
+import { FilterSwitch } from '../switch/FilterSwitch';
 
 import { useGlobalContext } from '../../context/Store';
+import { types } from '../../context/actions';
 
 import { getAllPets } from '../../utils/api';
 import { cleanPetData } from '../../utils/helpers';
+
+import { Pet } from '../../types/globalTypes';
 
 import { styled } from '@mui/material/styles';
 // import { css } from "@emotion/react";
@@ -30,10 +34,11 @@ const StyledTable = styled('div')(() => ({ flexGrow: 1 }));
 
 export const DataTable: FC = () => {
   const [loading, setLoading] = useState(false);
-  const [pets, setPets] = useState([]);
+  const [sold, setSold] = useState(false);
 
   const {
-    state: { user },
+    dispatch,
+    state: { user, pets },
   } = useGlobalContext();
   const { permissions } = user || { permissions: null };
 
@@ -43,12 +48,16 @@ export const DataTable: FC = () => {
       const res = await getAllPets();
       const pets = await res.json();
       const cleanPets = cleanPetData(pets);
-      setPets(cleanPets);
-      setLoading(false);
+      if (cleanPets.length) {
+        dispatch({ type: types.SET_PETS, payload: cleanPets });
+        setLoading(false);
+      } else {
+        getPets();
+      }
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     getPets();
@@ -59,8 +68,9 @@ export const DataTable: FC = () => {
   ) : (
     <StyledTableContainer>
       <StyledTable>
+        {permissions === 'admin' && <FilterSwitch sold={sold} setSold={setSold} />}
         <DataGrid
-          rows={pets}
+          rows={sold ? pets.filter((pet: Pet) => pet.status === 'sold') : pets}
           columns={
             permissions === 'admin'
               ? [...Cols, ...AdminCols]
