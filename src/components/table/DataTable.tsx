@@ -65,8 +65,8 @@ export const DataTable: FC = () => {
             permissions === 'admin'
               ? [...Cols, ...AdminCols]
               : permissions === 'customer'
-              ? [...Cols, ...CustomerCols]
-              : [...Cols, ...PublicCols]
+              ? [...Cols.slice(1), ...CustomerCols]
+              : [...Cols.slice(1), ...PublicCols]
           }
           autoHeight={true}
           density="comfortable"
