@@ -6,6 +6,7 @@ import { Chip } from '@mui/material';
 
 import { Cols } from './Cols';
 import { AdminCols } from './AdminCols';
+import { CustomerCols } from './CustomerCols';
 import { PublicCols } from './PublicCols';
 
 import { useGlobalContext } from '../../context/Store';
@@ -64,7 +65,7 @@ export const DataTable: FC = () => {
             permissions === 'admin'
               ? [...Cols, ...AdminCols]
               : permissions === 'customer'
-              ? [...Cols]
+              ? [...Cols, ...CustomerCols]
               : [...Cols, ...PublicCols]
           }
           autoHeight={true}
