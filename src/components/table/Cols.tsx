@@ -17,7 +17,7 @@ export const Cols: GridColDef[] = [
     headerName: 'Photo',
     sortable: false,
     renderCell: ({ row }: { row: Pet }) => (
-      <Avatar variant="rounded" sx={{ width: 54, height: 54 }}>
+      <Avatar variant="rounded" sx={{ width: 60, height: 60 }}>
         <picture
           style={{
             display: 'flex',

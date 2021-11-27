@@ -20,6 +20,14 @@ picture > * {
   width: 100%;
 }
 
+.MuiDataGrid-row {
+  padding: 0.3rem 0;
+}
+
+.MuiDataGrid-virtualScrollerContent {
+  min-height: calc(100vh - 432px);
+}
+
 .Toastify__progress-bar--info {
   background: rgb(28, 110, 164) !important;
 }
