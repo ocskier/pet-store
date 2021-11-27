@@ -12,6 +12,6 @@ export const PublicCols: GridColDef[] = [
     flex: 1,
     editable: false,
     disableColumnMenu: true,
-    renderCell: ({ row }: { row: Pet }) => <Typography>{row.status[0] + row.status.slice(1)}</Typography>,
+    renderCell: ({ row }: { row: Pet }) => <Typography>{row.status[0].toUpperCase() + row.status.slice(1)}</Typography>,
   },
 ];
