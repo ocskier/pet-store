@@ -52,11 +52,12 @@ const SoldSwitch = styled(Switch)(({ theme }) => ({
 
 export const SoldSwitchWithLabel = ({ row }: { row: Pet }) => {
   const [checked, setChecked] = useState(row.status === 'available' ? false : true);
-  console.log(row);
+
   const changeStatus = useCallback((row: Pet) => {
     row.status = row.status === 'available' ? 'sold' : 'available';
     setChecked((oldChecked) => !oldChecked);
   }, []);
+
   return (
     row && (
       <StyledFormGroup>
