@@ -1,4 +1,5 @@
 import { GridColDef } from '@mui/x-data-grid';
+import { Avatar } from '@mui/material';
 
 import { Pet } from '../../types/globalTypes';
 
@@ -16,17 +17,19 @@ export const Cols: GridColDef[] = [
     headerName: 'Photo',
     sortable: false,
     renderCell: ({ row }: { row: Pet }) => (
-      <picture
-        style={{
-          display: 'flex',
-          maxHeight: 'inherit',
-          minHeight: 'inherit',
-          height: '100%',
-        }}
-      >
-        <source srcSet={row.category ? `https://loremflickr.com/320/240/${row.category}` : fakePet} />
-        <img src={row.photo} alt={row.name} />
-      </picture>
+      <Avatar variant="rounded" sx={{ width: 54, height: 54 }}>
+        <picture
+          style={{
+            display: 'flex',
+            maxHeight: 'inherit',
+            minHeight: 'inherit',
+            height: '100%',
+          }}
+        >
+          <source srcSet={row.category ? `https://loremflickr.com/320/240/${row.category}` : fakePet} />
+          <img src={row.photo} alt={row.name} />
+        </picture>
+      </Avatar>
     ),
   },
   {
