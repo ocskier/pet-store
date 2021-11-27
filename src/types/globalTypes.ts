@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 
 export type Pet = {
-  id: string;
+  id: number;
   category: string;
   name: string;
   photo: string;
@@ -23,6 +23,7 @@ export interface Action {
 export interface State {
   loggedIn: boolean;
   user: User | null;
+  pets: Pet[];
 }
 
 export interface GlobalContextInterface {

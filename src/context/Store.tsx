@@ -7,6 +7,7 @@ import { GlobalContextInterface, ProvProps } from '../types/globalTypes';
 const initialState = {
   loggedIn: false,
   user: null,
+  pets: [],
 };
 
 const GlobalContext = createContext<GlobalContextInterface>({

@@ -1,6 +1,7 @@
 const BASE_URL = 'https://petstore.swagger.io/v2';
 
 type PetInput = {
+  id: number;
   category?: string;
   name?: string;
   photo?: string;
@@ -8,11 +9,9 @@ type PetInput = {
   status?: string;
 };
 
-export const getAllPets = () => fetch(BASE_URL + '/pet/findByStatus?status=available&status=pending&status=sold');
+export const getAllPets = () => fetch(`${BASE_URL}/pet/findByStatus?status=available&status=pending&status=sold`);
 
-export const updateAPet = (petId: string, newPetData: PetInput) =>
-  fetch(BASE_URL + '/pet/' + petId, {
+export const updateAPet = (newPetData: PetInput) =>
+  fetch(`${BASE_URL}/pet/${newPetData.id}?name=${newPetData.name}&status=${newPetData.status}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newPetData),
   });

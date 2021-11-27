@@ -8,6 +8,8 @@ const reducer = (state: State, { type, payload }: Action) => {
       return { ...state, loggedIn: false, user: null };
     case 'ME':
       return { ...state, loggedIn: true, user: { ...payload } };
+    case 'SET_PETS':
+      return { ...state, pets: [...payload] };
     default:
       return state;
   }
