@@ -25,7 +25,6 @@ export const SoldSwitch = ({ row }: { row: Pet }) => {
         try {
           const res = await updateAPet(foundPet);
           const data = await res.json();
-          console.log(data);
           if (data.code < 400) {
             foundPet.status = row.status === 'available' ? 'sold' : 'available';
             dispatch({ type: types.SET_PETS, payload: pets });
