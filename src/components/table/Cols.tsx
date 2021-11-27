@@ -44,11 +44,6 @@ export const Cols: GridColDef[] = [
     headerName: 'Tags',
     editable: false,
   },
-  {
-    field: 'status',
-    headerName: 'Status',
-    editable: false,
-  },
 ].map((col) => {
   return {
     ...col,

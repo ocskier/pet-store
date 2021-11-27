@@ -5,6 +5,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Chip } from '@mui/material';
 
 import { Cols } from './Cols';
+import { AdminCols } from './AdminCols';
+import { CustomerCols } from './CustomerCols';
+import { PublicCols } from './PublicCols';
 
 import { useGlobalContext } from '../../context/Store';
 
@@ -58,7 +61,13 @@ export const DataTable: FC = () => {
       <StyledTable>
         <DataGrid
           rows={pets}
-          columns={permissions === 'admin' ? [...Cols] : permissions === 'customer' ? [...Cols] : [...Cols]}
+          columns={
+            permissions === 'admin'
+              ? [...Cols, ...AdminCols]
+              : permissions === 'customer'
+              ? [...Cols, ...CustomerCols]
+              : [...Cols, ...PublicCols]
+          }
           autoHeight={true}
           density="comfortable"
           pageSize={25}
