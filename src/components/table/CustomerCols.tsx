@@ -1,6 +1,9 @@
 // MUI imports (Material-UI)
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
+
+// Component imports
+import { PurchaseButton } from '../PurchaseButton';
 
 // Type and interface imports
 import { Pet } from '../../types/globalTypes';
@@ -17,12 +20,6 @@ export const CustomerCols: GridColDef[] = [
     // Custom cell for customer to purchase a pet with button or
     // Sold text if not available
     renderCell: ({ row }: { row: Pet }) =>
-      row.status === 'available' ? (
-        <Button color="success" variant="outlined">
-          Purchase Pet
-        </Button>
-      ) : (
-        <Typography>Sold</Typography>
-      ),
+      row.status === 'available' ? <PurchaseButton row={row} /> : <Typography>Sold</Typography>,
   },
 ];

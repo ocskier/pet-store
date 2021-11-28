@@ -55,6 +55,16 @@ const StyledClearButton = styled(StyledButton)(() => ({
   fontSize: '0.75rem',
 }));
 
+const StyledTypography = styled((props) => <Typography variant="h4" component="div" {...props} />)(() => ({
+  flexGrow: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  '> *': {
+    margin: '0.3rem !important',
+  },
+}));
+
 export const Header = () => {
   // Snapshot of the global state
   const {
@@ -66,10 +76,12 @@ export const Header = () => {
   // An event handler to clear user from state, toast user, and remove user from ls
   // and redirect back to home
   const logout = () => {
-    dispatch({ type: types.LOGOUT });
     toast('Logging user out!', 800);
-    updateUserPersistence();
-    navigate('/');
+    setTimeout(() => {
+      dispatch({ type: types.LOGOUT });
+      updateUserPersistence();
+      navigate('/');
+    }, 800);
   };
   // An event handler that clears storage and reloads home to clear out pet data
   const clearStorage = () => {
@@ -85,11 +97,7 @@ export const Header = () => {
           {/* placeholder */}
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}></IconButton>
 
-          <Typography
-            variant="h4"
-            component="div"
-            sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-          >
+          <StyledTypography>
             Jackson's Pet Store
             {/* Show login or logout based on authorization of user*/}
             {loggedIn ? (
@@ -101,7 +109,7 @@ export const Header = () => {
                 <StyledButton color="inherit">Login</StyledButton>
               </Link>
             )}
-          </Typography>
+          </StyledTypography>
           <StyledClearButton onClick={clearStorage} color="inherit">
             Clear Storage
           </StyledClearButton>

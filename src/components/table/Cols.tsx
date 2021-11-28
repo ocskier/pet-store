@@ -35,7 +35,8 @@ export const Cols: GridColDef[] = [
       <Avatar variant="rounded" sx={{ width: 65, height: 65, borderRadius: '1rem' }}>
         <StyledPicture>
           <source srcSet={row.category ? `https://loremflickr.com/320/240/${row.category}` : fakePet} />
-          <img src={row.photo} alt={row.name} />
+          {/* Temp conditional render due to anderson.info returning network error */}
+          <img src={row.photo === 'https://anderson.info' ? fakePet : row.photo} alt={row.name} />
         </StyledPicture>
       </Avatar>
     ),
