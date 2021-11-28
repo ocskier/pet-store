@@ -32,7 +32,7 @@ export const Cols: GridColDef[] = [
     renderCell: ({ row }: { row: Pet }) => (
       // Custom cell for styled picture with fallback image if no src url is available
       // fallback image either based on category or generic local if no category
-      <Avatar variant="rounded" sx={{ width: 60, height: 60 }}>
+      <Avatar variant="rounded" sx={{ width: 65, height: 65, borderRadius: '1rem' }}>
         <StyledPicture>
           <source srcSet={row.category ? `https://loremflickr.com/320/240/${row.category}` : fakePet} />
           <img src={row.photo} alt={row.name} />
@@ -44,7 +44,9 @@ export const Cols: GridColDef[] = [
     field: 'name',
     headerName: 'Name',
     editable: false,
-    renderCell: ({ row }: { row: Pet }) => <Typography>{row.name[0].toUpperCase() + row.name.slice(1)}</Typography>,
+    renderCell: ({ row }: { row: Pet }) => {
+      return <Typography>{row.name[0].toUpperCase() + row.name.slice(1)}</Typography>;
+    },
   },
   {
     field: 'category',

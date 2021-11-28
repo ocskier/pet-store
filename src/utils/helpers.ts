@@ -13,7 +13,7 @@ export const cleanPetData = (data: any) =>
       return {
         id: pet.id,
         category: pet.category?.name,
-        name: pet.name,
+        name: pet.name ? pet.name : 'I need a name?!',
         photo: pet.photoUrls?.[0],
         tags: pet.tags?.map((tag: { id: number; name: string }) => tag.name).join(', '),
         status: pet.status,
@@ -25,7 +25,7 @@ export const cleanPetData = (data: any) =>
     })
     // and names (not good practice but for test purposes)
     .filter((pet: Pet, i: number, orig: Pet[]) => {
-      return orig.findIndex((p: Pet) => p.name === pet.name) === i;
+      return pet.name ? orig.findIndex((p: Pet) => p.name === pet.name) === i : pet;
     })
     // remove pets that have a placeholder string for category
     .filter((pet: Pet) => {

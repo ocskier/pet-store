@@ -18,6 +18,7 @@ import { toast } from '../utils/toast';
 const StyledAppBar = styled(AppBar)(() => ({
   justifyContent: 'center',
   minHeight: '6rem',
+  padding: '1rem 0',
   backgroundColor: '#21507f !important',
   background: `linear-gradient( 135deg, #2e1f0deb 0%, #a64d4dbd 49%, #151006 100% );`,
 }));
@@ -25,7 +26,7 @@ const StyledAppBar = styled(AppBar)(() => ({
 // Custom styled MUI Toolbar to center app title
 const StyledToolbar = styled(Toolbar)(() => ({
   '> *': {
-    minWidth: '4.5rem',
+    minWidth: '8rem',
   },
 }));
 
@@ -49,6 +50,11 @@ const StyledButton = styled(Button)(() => ({
   },
 }));
 
+const StyledClearButton = styled(StyledButton)(() => ({
+  minWidth: '8rem',
+  fontSize: '0.75rem',
+}));
+
 export const Header = () => {
   // Snapshot of the global state
   const {
@@ -65,6 +71,12 @@ export const Header = () => {
     updateUserPersistence();
     navigate('/');
   };
+  // An event handler that clears storage and reloads home to clear out pet data
+  const clearStorage = () => {
+    window.localStorage.removeItem('pets');
+    window.localStorage.removeItem('user');
+    window.location.replace('/');
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -73,20 +85,26 @@ export const Header = () => {
           {/* placeholder */}
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}></IconButton>
 
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
             Jackson's Pet Store
+            {/* Show login or logout based on authorization of user*/}
+            {loggedIn ? (
+              <StyledButton onClick={logout} color="inherit">
+                Logout
+              </StyledButton>
+            ) : (
+              <Link to="/login">
+                <StyledButton color="inherit">Login</StyledButton>
+              </Link>
+            )}
           </Typography>
-
-          {/* Show login or logout based on authorization of user*/}
-          {loggedIn ? (
-            <StyledButton onClick={logout} color="inherit">
-              Logout
-            </StyledButton>
-          ) : (
-            <Link to="/login">
-              <StyledButton color="inherit">Login</StyledButton>
-            </Link>
-          )}
+          <StyledClearButton onClick={clearStorage} color="inherit">
+            Clear Storage
+          </StyledClearButton>
         </StyledToolbar>
       </StyledAppBar>
     </Box>
