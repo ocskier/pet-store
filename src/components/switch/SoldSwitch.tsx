@@ -8,6 +8,7 @@ import { useGlobalContext } from '../../context/Store';
 import { types } from '../../context/actions';
 
 import { updateAPet } from '../../utils/api';
+import { updatePetsPersistence } from '../../utils/localStorage';
 import { toast } from '../../utils/toast';
 
 import { Pet } from '../../types/globalTypes';
@@ -28,6 +29,7 @@ export const SoldSwitch = ({ row }: { row: Pet }) => {
           if (data.code < 400) {
             foundPet.status = row.status === 'available' ? 'sold' : 'available';
             dispatch({ type: types.SET_PETS, payload: pets });
+            updatePetsPersistence(pets);
           } else {
             toast(`Pet not updated in DB!`, 1500, 'error');
           }

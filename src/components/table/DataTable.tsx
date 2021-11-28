@@ -15,6 +15,7 @@ import { types } from '../../context/actions';
 
 import { getAllPets } from '../../utils/api';
 import { cleanPetData } from '../../utils/helpers';
+import { readPetsPersistence, updatePetsPersistence } from '../../utils/localStorage';
 
 import { Pet } from '../../types/globalTypes';
 
@@ -43,19 +44,26 @@ export const DataTable: FC = () => {
   const { permissions } = user || { permissions: null };
 
   const getPets = useCallback(async () => {
-    try {
-      setLoading(true);
-      const res = await getAllPets();
-      const pets = await res.json();
-      const cleanPets = cleanPetData(pets);
-      if (cleanPets.length) {
-        dispatch({ type: types.SET_PETS, payload: cleanPets });
-        setLoading(false);
-      } else {
-        getPets();
+    setLoading(true);
+    const snapshotOfPets = readPetsPersistence();
+    if (Object.keys(snapshotOfPets).length === 0) {
+      try {
+        const res = await getAllPets();
+        const pets = await res.json();
+        const cleanPets = cleanPetData(pets);
+        if (cleanPets.length) {
+          dispatch({ type: types.SET_PETS, payload: cleanPets });
+          updatePetsPersistence(cleanPets);
+          setLoading(false);
+        } else {
+          getPets();
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      dispatch({ type: types.SET_PETS, payload: snapshotOfPets });
+      setLoading(false);
     }
   }, [dispatch]);
 
