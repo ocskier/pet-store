@@ -67,7 +67,7 @@ export const Login = () => {
         setTimeout(() => {
           dispatch({
             type: types.LOGIN,
-            payload: newUser,
+            payload: { username: newUser.username, permissions: newUser.permissions },
           });
           updateUserPersistence(newUser);
           navigate('/dashboard');

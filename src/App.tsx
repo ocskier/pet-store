@@ -49,6 +49,7 @@ const App = () => {
   // logged in user
   useEffect(() => {
     const user = readUserPersistence();
+    delete user.password;
     Object.keys(user).length && dispatch({ type: types.ME, payload: user });
     Object.keys(user).length && toast('Already logged in!', 600);
   }, [dispatch]);

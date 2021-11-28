@@ -31,12 +31,12 @@ export const Cols: GridColDef[] = [
     sortable: false,
     renderCell: ({ row }: { row: Pet }) => (
       // Custom cell for styled picture with fallback image if no src url is available
-      // fallback image either based on category or generic local if no category
+      // fallback image from generic local jpg
       <Avatar variant="rounded" sx={{ width: 65, height: 65, borderRadius: '1rem' }}>
         <StyledPicture>
-          <source srcSet={row.category ? `https://loremflickr.com/320/240/${row.category}` : fakePet} />
+          <source srcSet={fakePet} />
           {/* Temp conditional render due to anderson.info returning network error */}
-          <img src={row.photo === 'https://anderson.info' ? fakePet : row.photo} alt={row.name} />
+          <img src={row.photo.replace(/ /g, '%20')} alt={row.name} />
         </StyledPicture>
       </Avatar>
     ),
