@@ -55,6 +55,7 @@ export const DataTable: FC = () => {
     dispatch,
     state: { user, pets },
   } = useGlobalContext();
+
   // Destructuring permissions value from user if exists
   // else set to null (for ts)
   const { permissions } = user || { permissions: null };
