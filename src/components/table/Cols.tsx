@@ -1,12 +1,20 @@
 // MUI imports (Material-UI)
 import { Avatar } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
+import { styled } from '@mui/material/styles';
 
 // Type and interface imports
 import { Pet } from '../../types/globalTypes';
 
 // Local image for when no image src is availaable
 import fakePet from '../../assets/images/209-2097730_pets-nice-pets-hd-png-download.png';
+
+const StyledPicture = styled('picture')(() => ({
+  display: 'flex',
+  maxHeight: 'inherit',
+  minHeight: 'inherit',
+  height: '100%',
+}));
 
 // Define data columns that are shown in all views
 export const Cols: GridColDef[] = [
@@ -24,17 +32,10 @@ export const Cols: GridColDef[] = [
       // Custom cell for styled picture with fallback image if no src url is available
       // fallback image either based on category or generic local if no category
       <Avatar variant="rounded" sx={{ width: 60, height: 60 }}>
-        <picture
-          style={{
-            display: 'flex',
-            maxHeight: 'inherit',
-            minHeight: 'inherit',
-            height: '100%',
-          }}
-        >
+        <StyledPicture>
           <source srcSet={row.category ? `https://loremflickr.com/320/240/${row.category}` : fakePet} />
           <img src={row.photo} alt={row.name} />
-        </picture>
+        </StyledPicture>
       </Avatar>
     ),
   },
