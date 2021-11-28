@@ -18,5 +18,7 @@ export const cleanPetData = (data: any) =>
       return orig.findIndex((p: Pet) => p.id === pet.id) === i;
     })
     .filter((pet: Pet) => {
-      return pet.category ? categoriesArray.some((category) => category === pet.category) : pet;
+      return pet.category
+        ? categoriesArray.some((category) => category === pet.category) || pet.category.includes('category')
+        : pet;
     });
