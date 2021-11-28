@@ -9,6 +9,7 @@ import { Pet } from '../../types/globalTypes';
 // Local image for when no image src is availaable
 import fakePet from '../../assets/images/209-2097730_pets-nice-pets-hd-png-download.png';
 
+// Custom styled Picture that fills all the cell content
 const StyledPicture = styled('picture')(() => ({
   display: 'flex',
   maxHeight: 'inherit',
