@@ -1,5 +1,5 @@
 // MUI imports (Material-UI)
-import { Avatar } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import { GridColDef } from '@mui/x-data-grid';
 import { styled } from '@mui/material/styles';
 
@@ -44,6 +44,7 @@ export const Cols: GridColDef[] = [
     field: 'name',
     headerName: 'Name',
     editable: false,
+    renderCell: ({ row }: { row: Pet }) => <Typography>{row.name[0].toUpperCase() + row.name.slice(1)}</Typography>,
   },
   {
     field: 'category',
