@@ -1,5 +1,5 @@
 import { GridColDef } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 import { Pet } from '../../types/globalTypes';
 
@@ -12,6 +12,13 @@ export const CustomerCols: GridColDef[] = [
     flex: 1,
     editable: false,
     disableColumnMenu: true,
-    renderCell: ({ row }: { row: Pet }) => <Typography>{row.status === 'available' ? 'Buy A Pet' : 'Sold'}</Typography>,
+    renderCell: ({ row }: { row: Pet }) =>
+      row.status === 'available' ? (
+        <Button color="success" variant="outlined">
+          Purchase Pet
+        </Button>
+      ) : (
+        <Typography>Sold</Typography>
+      ),
   },
 ];
