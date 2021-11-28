@@ -57,6 +57,7 @@ const App = () => {
     <div className="App">
       <Header />
       <StyledHero />
+      {/* Centered toast informational alert for user feedback */}
       <ToastContainer />
       <main>
         <Routes>

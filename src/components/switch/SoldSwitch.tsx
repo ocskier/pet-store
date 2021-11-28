@@ -30,8 +30,9 @@ export const SoldSwitch = ({ row }: { row: Pet }) => {
   const changeStatus = async (row: Pet) => {
     const foundPet = pets.find((pet) => pet.id === row.id);
     if (foundPet) {
+      const { id, name, status } = foundPet;
       try {
-        const res = await updateAPet(foundPet);
+        const res = await updateAPet({ id, name, status });
         const data = await res.json();
         if (data.code < 400) {
           foundPet.status = row.status === 'available' ? 'sold' : 'available';
