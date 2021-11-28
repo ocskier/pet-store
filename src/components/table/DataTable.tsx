@@ -9,7 +9,7 @@ import { Chip } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { styled } from '@mui/material/styles';
 
-// Page and component imports
+// Component imports
 import { Cols } from './Cols';
 import { AdminCols } from './AdminCols';
 import { CustomerCols } from './CustomerCols';

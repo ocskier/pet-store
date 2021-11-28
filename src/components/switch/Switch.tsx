@@ -1,8 +1,11 @@
+// MUI imports (Material-UI)
 import { FormGroup, Switch } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+// Custom styled Form Group to be centered in view
 export const StyledFormGroup = styled(FormGroup)(() => ({ alignItems: 'center', margin: '0.25rem 0 1.25rem' }));
 
+// Custom styled Switch with sold Icon when checked else no icon
 export const StyledSwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
