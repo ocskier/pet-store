@@ -1,3 +1,5 @@
+import { User } from '../types/globalTypes';
+
 const BASE_URL = 'https://petstore.swagger.io/v2';
 
 type PetInput = {
@@ -15,3 +17,6 @@ export const updateAPet = (newPetData: PetInput) =>
   fetch(`${BASE_URL}/pet/${newPetData.id}?name=${newPetData.name}&status=${newPetData.status}`, {
     method: 'POST',
   });
+
+export const loginUser = (newUser: User) =>
+  fetch(`${BASE_URL}/user/login?username=${newUser.username}&status=${newUser.password}`);
