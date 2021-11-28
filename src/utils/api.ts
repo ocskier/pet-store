@@ -38,3 +38,6 @@ export const placeAnOrder = (orderData: OrderInput) =>
 // GET route to login a user with object value containing username and password
 export const loginUser = (newUser: User) =>
   fetch(`${BASE_URL}/user/login?username=${newUser.username}&status=${newUser.password}`);
+
+// GET route to logout a user
+export const logoutUser = () => fetch(`${BASE_URL}/user/logout`);
