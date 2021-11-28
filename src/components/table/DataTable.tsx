@@ -31,6 +31,11 @@ import { Pet } from '../../types/globalTypes';
 
 // import { css } from "@emotion/react"; for future use
 
+// Local type to extend mui styled props
+interface TableProps {
+  numPets: number;
+}
+
 // Custom styled Chip for no table results to display
 const StyledChip = styled(Chip)(() => ({
   margin: '5rem 1rem 0',
@@ -43,7 +48,12 @@ const StyledTableContainer = styled('div')(() => ({
 }));
 
 // Custom styled table to fill the screen width
-const StyledTable = styled('div')(() => ({ flexGrow: 1 }));
+const StyledTable = styled('div')<TableProps>(({ numPets }) => ({
+  flexGrow: 1,
+  '& .MuiDataGrid-virtualScrollerContent': {
+    minHeight: `${numPets % 25 === 0 ? 25 * 78 : (numPets % 25) * 78}px`,
+  },
+}));
 
 export const DataTable: FC = () => {
   // Local states for loading status and boolean for if filtering
@@ -109,7 +119,7 @@ export const DataTable: FC = () => {
     <ClipLoader color={'blue'} loading={loading} css={''} size={100} />
   ) : (
     <StyledTableContainer>
-      <StyledTable>
+      <StyledTable numPets={pets.length}>
         {/* Only show the sold filter if admin */}
         {permissions === 'admin' && <FilterSwitch sold={sold} setSold={setSold} />}
         {/* Data Table shows all pets unless admin (will render only sold if admin selects) */}

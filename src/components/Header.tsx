@@ -11,6 +11,7 @@ import { useGlobalContext } from '../context/Store';
 import { types } from '../context/actions';
 
 // Utility imports
+import { logoutUser } from '../utils/api';
 import { updateUserPersistence } from '../utils/localStorage';
 import { toast } from '../utils/toast';
 
@@ -75,13 +76,23 @@ export const Header = () => {
 
   // An event handler to clear user from state, toast user, and remove user from ls
   // and redirect back to home
-  const logout = () => {
-    toast('Logging user out!', 800);
-    setTimeout(() => {
-      dispatch({ type: types.LOGOUT });
-      updateUserPersistence();
-      navigate('/');
-    }, 800);
+  const logout = async () => {
+    try {
+      const res = await logoutUser();
+      const data = await res.json();
+      if (data.code < 400) {
+        toast('Logging user out!', 800);
+        setTimeout(() => {
+          dispatch({ type: types.LOGOUT });
+          updateUserPersistence();
+          navigate('/');
+        }, 800);
+      } else {
+        toast(`Trouble logging you out!`, 1400, 'error');
+      }
+    } catch (err) {
+      toast(`Something went wrong!`, 1400, 'error');
+    }
   };
   // An event handler that clears storage and reloads home to clear out pet data
   const clearStorage = () => {
