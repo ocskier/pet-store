@@ -39,10 +39,10 @@ export const SoldSwitch = ({ row }: { row: Pet }) => {
           dispatch({ type: types.SET_PETS, payload: pets });
           updatePetsPersistence(pets);
         } else {
-          toast(`Pet not updated in DB!`, 1500, 'error');
+          toast(`Pet not updated in DB!`, 1400, 'error');
         }
       } catch (err) {
-        toast(`Something went wrong!`, 1500, 'error');
+        toast(`Something went wrong!`, 1400, 'error');
       }
     }
   };

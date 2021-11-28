@@ -24,6 +24,7 @@ import { types } from '../../context/actions';
 import { getAllPets } from '../../utils/api';
 import { cleanPetData } from '../../utils/helpers';
 import { readPetsPersistence, updatePetsPersistence } from '../../utils/localStorage';
+import { toast } from '../../utils/toast';
 
 // Type and interface imports
 import { Pet } from '../../types/globalTypes';
@@ -72,17 +73,25 @@ export const DataTable: FC = () => {
     if (Object.keys(snapshotOfPets).length === 0) {
       try {
         const res = await getAllPets();
-        const pets = await res.json();
-        const cleanPets = cleanPetData(pets);
-        if (cleanPets.length) {
-          dispatch({ type: types.SET_PETS, payload: cleanPets });
-          updatePetsPersistence(cleanPets);
-          setLoading(false);
+        if (res.status < 400) {
+          const pets = await res.json();
+          const cleanPets = cleanPetData(pets);
+          if (cleanPets.length) {
+            dispatch({ type: types.SET_PETS, payload: cleanPets });
+            updatePetsPersistence(cleanPets);
+            setLoading(false);
+          } else {
+            getPets();
+          }
         } else {
-          getPets();
+          toast(`Network error, try again later!`, 1400, 'error');
+          setTimeout(() => {
+            setLoading(false);
+          }, 1400);
         }
       } catch (err) {
-        console.log(err);
+        toast(`Something went wrong!`, 1400, 'error');
+        setLoading(false);
       }
     } else {
       dispatch({ type: types.SET_PETS, payload: snapshotOfPets });

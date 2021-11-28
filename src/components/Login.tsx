@@ -63,18 +63,22 @@ export const Login = () => {
       const res = await loginUser(newUser);
       const data = await res.json();
       if (data.code < 400) {
-        dispatch({
-          type: types.LOGIN,
-          payload: newUser,
-        });
-        updateUserPersistence(newUser);
-        toast('Successful login!', 1000);
-        navigate('/dashboard');
+        toast('Successful login!', 750);
+        setTimeout(() => {
+          dispatch({
+            type: types.LOGIN,
+            payload: newUser,
+          });
+          updateUserPersistence(newUser);
+          navigate('/dashboard');
+        }, 750);
       } else {
-        toast(`Authentication failed!`, 1500, 'error');
+        toast(`Authentication failed!`, 1400, 'error');
+        setLoading(false);
       }
     } catch (err) {
-      toast(`Something went wrong!`, 1500, 'error');
+      toast(`Something went wrong!`, 1400, 'error');
+      setLoading(false);
     }
   };
 
