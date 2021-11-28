@@ -1,3 +1,4 @@
+// Dependency imports
 import bcrypt from 'bcryptjs';
 
 // Type and interface imports
@@ -5,6 +6,7 @@ import { Pet, User } from '../types/globalTypes';
 
 // Stores updated user in localStorage to persist across browser sessions
 export const updateUserPersistence = (user?: User) => {
+  // hash password before storing
   user
     ? bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(user.password, salt, function (err, hash) {
