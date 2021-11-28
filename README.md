@@ -1,4 +1,4 @@
-# Pet Store
+# Jackson's Pet Store
 
 A pet store app that allows for public viewing of pets available and sold, as well as authentication for customer buying and admin marking sold and polling for sold pets.
 

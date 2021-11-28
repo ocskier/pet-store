@@ -1,5 +1,7 @@
+// MUI imports (Material-UI)
 import { Box } from '@mui/material';
 
+// Component imports
 import { DataTable } from '../components/table/DataTable';
 
 export const Home = () => {
