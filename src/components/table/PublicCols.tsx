@@ -1,6 +1,8 @@
+// MUI imports (Material-UI)
 import { GridColDef } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
 
+// Type and interface imports
 import { Pet } from '../../types/globalTypes';
 
 export const PublicCols: GridColDef[] = [

@@ -17,7 +17,7 @@ import { Home } from './pages/Home';
 import { Login } from './components/Login';
 import { Dashboard } from './pages/Dashboard';
 
-// Global State import
+// Global State imports
 import { useGlobalContext } from './context/Store';
 import { types } from './context/actions';
 

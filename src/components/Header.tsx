@@ -6,7 +6,7 @@ import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/mater
 import { styled } from '@mui/material/styles';
 // import MenuIcon from "@mui/icons-material/Menu"; // for future
 
-// Global State import
+// Global State imports
 import { useGlobalContext } from '../context/Store';
 import { types } from '../context/actions';
 
