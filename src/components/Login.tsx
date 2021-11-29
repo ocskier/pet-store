@@ -8,6 +8,7 @@ import { ClipLoader } from 'react-spinners';
 // MUI imports (Material-UI)
 import { Button, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, TextField } from '@mui/material';
 import { Fingerprint } from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
 
 // Component imports
 import { StyledFormGroup } from './switch/Switch';
@@ -23,6 +24,13 @@ import { toast } from '../utils/toast';
 
 // Type and interface imports
 import { User } from '../types/globalTypes';
+
+const StyledDiv = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: '25rem',
+}));
 
 export const Login = () => {
   // Local states for loading true or false, permissions selection value, and form object
@@ -83,55 +91,59 @@ export const Login = () => {
   };
 
   // Show the loading spinner during async actions else login form
-  return loading ? (
-    <ClipLoader color={'blue'} loading={loading} css={''} size={100} />
-  ) : (
-    <StyledFormGroup>
-      <FormControl component="fieldset">
-        <FormLabel component="legend" sx={{ marginBottom: '1.5rem' }}>
-          Login
-        </FormLabel>
-        <TextField
-          id="username-basic"
-          label="Username"
-          name="username"
-          sx={{ marginBottom: '1rem' }}
-          onChange={handleFormChange}
-          value={formData.username}
-          variant="outlined"
-        />
-        <TextField
-          id="password-basic"
-          label="Password"
-          name="password"
-          sx={{ marginBottom: '1rem' }}
-          value={formData.password}
-          onChange={handleFormChange}
-          variant="outlined"
-        />
-      </FormControl>
-      <FormControl component="fieldset" sx={{ margin: '1rem 0' }}>
-        <FormLabel component="legend" sx={{ marginBottom: '1rem' }}>
-          Permissions
-        </FormLabel>
-        <RadioGroup aria-label="permissions" name="permissions" value={permissions} onChange={handleRadioChange}>
-          <FormControlLabel value="customer" control={<Radio />} label="Customer" />
-          <FormControlLabel value="admin" control={<Radio />} label="Admin" />
-        </RadioGroup>
-      </FormControl>
+  return (
+    <StyledDiv>
+      {loading ? (
+        <ClipLoader color={'blue'} loading={loading} css={''} size={100} />
+      ) : (
+        <StyledFormGroup>
+          <FormControl component="fieldset">
+            <FormLabel component="legend" sx={{ marginBottom: '1.5rem' }}>
+              Login
+            </FormLabel>
+            <TextField
+              id="username-basic"
+              label="Username"
+              name="username"
+              sx={{ marginBottom: '1rem' }}
+              onChange={handleFormChange}
+              value={formData.username}
+              variant="outlined"
+            />
+            <TextField
+              id="password-basic"
+              label="Password"
+              name="password"
+              sx={{ marginBottom: '1rem' }}
+              value={formData.password}
+              onChange={handleFormChange}
+              variant="outlined"
+            />
+          </FormControl>
+          <FormControl component="fieldset" sx={{ margin: '1rem 0' }}>
+            <FormLabel component="legend" sx={{ marginBottom: '1rem' }}>
+              Permissions
+            </FormLabel>
+            <RadioGroup aria-label="permissions" name="permissions" value={permissions} onChange={handleRadioChange}>
+              <FormControlLabel value="customer" control={<Radio />} label="Customer" />
+              <FormControlLabel value="admin" control={<Radio />} label="Admin" />
+            </RadioGroup>
+          </FormControl>
 
-      {/* Disabled button until username and password have input*/}
-      <Button
-        aria-label="fingerprint"
-        color="primary"
-        disabled={!formData.username || !formData.password}
-        onClick={login}
-        type="submit"
-        variant="outlined"
-      >
-        <Fingerprint />
-        Submit
-      </Button>
-    </StyledFormGroup>
+          {/* Disabled button until username and password have input*/}
+          <Button
+            aria-label="fingerprint"
+            color="primary"
+            disabled={!formData.username || !formData.password}
+            onClick={login}
+            type="submit"
+            variant="outlined"
+          >
+            <Fingerprint />
+            Submit
+          </Button>
+        </StyledFormGroup>
+      )}
+    </StyledDiv>
   );
 };
