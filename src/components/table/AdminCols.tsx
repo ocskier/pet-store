@@ -13,7 +13,7 @@ export const AdminCols: GridColDef[] = [
     headerName: 'Status',
     align: 'center',
     headerAlign: 'center',
-    flex: 1,
+    flex: window.innerWidth < 476 ? 2 : 1,
     editable: false,
     disableColumnMenu: true,
     // Custom cell with styled switch for marking sold

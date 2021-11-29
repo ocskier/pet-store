@@ -26,18 +26,26 @@ const StyledAppBar = styled(AppBar)(() => ({
 }));
 
 // Custom styled MUI Toolbar to center app title
-const StyledToolbar = styled(Toolbar)(() => ({
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   '> *': {
     minWidth: '8rem',
   },
   ' > :first-child': {
     maxWidth: '8rem;',
+    marginTop: '0.3rem;',
+  },
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    ' > :first-child': {
+      order: 2,
+    },
   },
 }));
 
 // Custom styled MUI Button to match theme
 const StyledButton = styled(Button)(() => ({
   padding: '6px !important',
+  margin: '0.25rem 0',
   borderRadius: '1rem !important',
   fontFamily: 'Georgia, serif !important',
   fontWeight: 'normal !important',
