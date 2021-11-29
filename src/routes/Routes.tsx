@@ -14,7 +14,7 @@ export const ProtectedRoute = ({ auth, children }: CustomRouteProps) => {
   return <>{auth ? children : <Navigate to="/login" />}</>;
 };
 
-// Custom route for all however if /login and user authenticted reroutes to Dashboard
+// Custom route for all however if /login and user authenticated reroutes to Dashboard
 export const PublicRoute = ({ auth, children, restricted }: CustomRouteProps) => {
   return <>{auth && restricted ? <Navigate to={'/dashboard'} /> : children}</>;
 };
