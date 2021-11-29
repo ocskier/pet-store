@@ -24,6 +24,7 @@ export const Cols: GridColDef[] = [
     headerName: 'ID',
     width: 90,
     editable: false,
+    hide: window.innerWidth < 476,
   },
   {
     field: 'photo',
@@ -53,11 +54,13 @@ export const Cols: GridColDef[] = [
     field: 'category',
     headerName: 'Category',
     editable: false,
+    hide: window.innerWidth < 786,
   },
   {
     field: 'tags',
     headerName: 'Tags',
     editable: false,
+    hide: window.innerWidth < 786,
   },
 ].map((col) => {
   // Center all column data, headers, flex grow evenly, no column menu for now
