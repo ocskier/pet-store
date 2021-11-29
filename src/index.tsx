@@ -13,8 +13,9 @@ import { GlobalProvider } from './context/Store';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
+// issues with roboto font loading
+// import '@fontsource/roboto/400.css';
+// import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 // Analytics import
