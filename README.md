@@ -10,8 +10,8 @@ https://user-images.githubusercontent.com/36890724/143811676-a2327507-3dcb-46b9-
 
 <a href="https://nodejs.org/en/"><img width=80 height=80 src="./logo.svg"></a>
 
-* Node 14.x
-* Yarn 1.x
+* Node >=14.x
+* Yarn >=1.x
 
 ## Technologies
 
@@ -20,6 +20,8 @@ https://user-images.githubusercontent.com/36890724/143811676-a2327507-3dcb-46b9-
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
 ![TS](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+
+![Material-UI](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)
 
 ## Installation
 
@@ -39,6 +41,8 @@ npm install --global yarn
 ```bash
 yarn install
 ```
+
+Alternatively, you can delete the package-lock.json file and run the same commands with `npm`
 
 ## Usage
   
