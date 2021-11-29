@@ -4,6 +4,7 @@ A pet store app that allows for public viewing of pets available and sold, as we
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+https://user-images.githubusercontent.com/36890724/143811676-a2327507-3dcb-46b9-abd5-a8e1bbe8f860.mp4
 
 ## Prerequisites
 
