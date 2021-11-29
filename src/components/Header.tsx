@@ -1,10 +1,10 @@
 // Dependency imports
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // MUI imports (Material-UI)
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Pets } from '@mui/icons-material';
+import { Home, Pets } from '@mui/icons-material';
 // import MenuIcon from "@mui/icons-material/Menu"; // for future
 
 // Global State imports
@@ -63,11 +63,13 @@ const StyledButton = styled(Button)(() => ({
   },
 }));
 
+// Custom Clear Button to match theme
 const StyledClearButton = styled(StyledButton)(() => ({
   minWidth: '8rem',
   fontSize: '0.75rem',
 }));
 
+// Custom Brand container with auth button centered vertically
 const StyledTypography = styled((props) => <Typography variant="h4" component="div" {...props} />)(() => ({
   flexGrow: 1,
   display: 'flex',
@@ -78,6 +80,13 @@ const StyledTypography = styled((props) => <Typography variant="h4" component="d
   },
 }));
 
+// Custom Home link icon
+const StyledHome = styled(Home)(() => ({
+  paddingBottom: '0.5rem',
+  '&:hover > *': { fill: '#d3acda8f !important;' },
+}));
+
+// Custom Paw link icon
 const StyledPets = styled(Pets)(() => ({
   paddingBottom: '0.5rem',
   '&:hover > *': { fill: '#d3acda8f !important;' },
@@ -94,6 +103,10 @@ export const Header = () => {
   // else set to null (for ts)
   const { username } = user || { username: null };
 
+  // Hook to access route path
+  const location = useLocation();
+
+  // Redirect hook
   const navigate = useNavigate();
 
   // An event handler to clear user from state, toast user, and remove user from ls
@@ -131,7 +144,9 @@ export const Header = () => {
           {loggedIn && username ? (
             <StyledTypography>{username[0].toUpperCase() + username.slice(1)}</StyledTypography>
           ) : (
-            <Link to={!loggedIn ? '/dashboard' : '#'}>{!loggedIn ? <StyledPets fontSize="large" /> : null}</Link>
+            <Link to={location.pathname !== '/login' ? '/dashboard' : '/'}>
+              {location.pathname !== '/login' ? <StyledPets fontSize="large" /> : <StyledHome fontSize="large" />}
+            </Link>
           )}
           <StyledTypography>
             Jackson's Pet Store
