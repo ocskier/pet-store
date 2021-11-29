@@ -118,7 +118,7 @@ export const DataTable: FC = () => {
   return loading ? (
     <ClipLoader color={'blue'} loading={loading} css={''} size={100} />
   ) : (
-    <StyledTableContainer>
+    <StyledTableContainer sx={sold ? { alignSelf: 'start' } : {}}>
       <StyledTable numPets={pets.length}>
         {/* Only show the sold filter if admin */}
         {permissions === 'admin' && <FilterSwitch sold={sold} setSold={setSold} />}
