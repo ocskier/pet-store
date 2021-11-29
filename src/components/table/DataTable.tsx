@@ -33,7 +33,7 @@ import { Pet } from '../../types/globalTypes';
 
 // Local type to extend mui styled props
 interface TableProps {
-  numPets: number;
+  numpets: number;
 }
 
 // Custom styled Chip for no table results to display
@@ -44,14 +44,15 @@ const StyledChip = styled(Chip)(() => ({
 // Custom styled flex container for the table
 const StyledTableContainer = styled('div')(() => ({
   display: 'flex',
+  alignSelf: 'start',
   width: '100%',
 }));
 
 // Custom styled table to fill the screen width
-const StyledTable = styled('div')<TableProps>(({ numPets }) => ({
+const StyledTable = styled('div')<TableProps>(({ numpets }) => ({
   flexGrow: 1,
   '& .MuiDataGrid-virtualScrollerContent': {
-    minHeight: `${numPets % 25 === 0 ? 25 * 78 : (numPets % 25) * 78}px`,
+    minHeight: `${numpets % 25 === 0 ? 25 * 78 : (numpets % 25) * 78}px`,
   },
 }));
 
@@ -118,8 +119,8 @@ export const DataTable: FC = () => {
   return loading ? (
     <ClipLoader color={'blue'} loading={loading} css={''} size={100} />
   ) : (
-    <StyledTableContainer sx={sold ? { alignSelf: 'start' } : {}}>
-      <StyledTable numPets={pets.length}>
+    <StyledTableContainer>
+      <StyledTable numpets={pets.length}>
         {/* Only show the sold filter if admin */}
         {permissions === 'admin' && <FilterSwitch sold={sold} setSold={setSold} />}
         {/* Data Table shows all pets unless admin (will render only sold if admin selects) */}

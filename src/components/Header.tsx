@@ -17,12 +17,15 @@ import { updateUserPersistence } from '../utils/localStorage';
 import { toast } from '../utils/toast';
 
 // Custom styled MUI Appbar for app specific theme
-const StyledAppBar = styled(AppBar)(() => ({
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
   justifyContent: 'center',
   minHeight: '6rem',
-  padding: '1rem 0',
+  padding: '1rem 0 1rem 0',
   backgroundColor: '#21507f !important',
   background: `linear-gradient( 135deg, #2e1f0deb 0%, #a64d4dbd 49%, #151006 100% );`,
+  [theme.breakpoints.down('sm')]: {
+    paddingBottom: '0.5rem',
+  },
 }));
 
 // Custom styled MUI Toolbar to center app title
@@ -30,14 +33,18 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   '> *': {
     minWidth: '8rem',
   },
-  ' > :first-child': {
+  '> a:first-of-type': {
     maxWidth: '8rem;',
     marginTop: '0.3rem;',
   },
+  '> a:first-of-type svg': {
+    paddingBottom: 0,
+  },
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',
-    ' > :first-child': {
+    '> a:first-of-type': {
       order: 2,
+      marginTop: '0.5rem',
     },
   },
 }));
@@ -69,7 +76,7 @@ const StyledClearButton = styled(StyledButton)(() => ({
   fontSize: '0.75rem',
 }));
 
-// Custom Brand container with auth button centered vertically
+// Custom text container for brand with flex
 const StyledTypography = styled((props) => <Typography variant="h4" component="div" {...props} />)(() => ({
   flexGrow: 1,
   display: 'flex',
@@ -77,6 +84,16 @@ const StyledTypography = styled((props) => <Typography variant="h4" component="d
   alignItems: 'center',
   '> *': {
     margin: '0.3rem !important',
+  },
+}));
+
+// Custom Brand container with auth button centered vertically
+const StyledLinkTypography = styled(StyledTypography)(({ theme }) => ({
+  maxWidth: '8rem',
+  marginTop: '0.3rem',
+  [theme.breakpoints.down('sm')]: {
+    order: 2,
+    marginTop: '0.5rem',
   },
 }));
 
@@ -142,7 +159,7 @@ export const Header = () => {
         <StyledToolbar>
           {/* If logged in show username else icon to Dashboard */}
           {loggedIn && username ? (
-            <StyledTypography>{username[0].toUpperCase() + username.slice(1)}</StyledTypography>
+            <StyledLinkTypography>{username[0].toUpperCase() + username.slice(1)}</StyledLinkTypography>
           ) : (
             <Link to={location.pathname !== '/login' ? '/dashboard' : '/'}>
               {location.pathname !== '/login' ? <StyledPets fontSize="large" /> : <StyledHome fontSize="large" />}
