@@ -2,8 +2,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 
 // MUI imports (Material-UI)
-import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Home, Pets } from '@mui/icons-material';
 // import MenuIcon from "@mui/icons-material/Menu"; // for future
 
 // Global State imports
@@ -28,6 +29,9 @@ const StyledAppBar = styled(AppBar)(() => ({
 const StyledToolbar = styled(Toolbar)(() => ({
   '> *': {
     minWidth: '8rem',
+  },
+  ' > :first-child': {
+    maxWidth: '8rem;',
   },
 }));
 
@@ -66,12 +70,22 @@ const StyledTypography = styled((props) => <Typography variant="h4" component="d
   },
 }));
 
+const StyledPets = styled(Pets)(() => ({
+  paddingBottom: '0.5rem',
+  '&:hover > *': { fill: '#d3acda8f !important;' },
+}));
+
 export const Header = () => {
   // Snapshot of the global state
   const {
-    state: { loggedIn },
+    state: { loggedIn, user },
     dispatch,
   } = useGlobalContext();
+
+  // Destructuring username value from user if exists
+  // else set to null (for ts)
+  const { username } = user || { username: null };
+
   const navigate = useNavigate();
 
   // An event handler to clear user from state, toast user, and remove user from ls
@@ -105,9 +119,12 @@ export const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar position="static">
         <StyledToolbar>
-          {/* placeholder */}
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}></IconButton>
-
+          {/* If logged in show username else icon to Dashboard */}
+          {loggedIn && username ? (
+            <StyledTypography>{username[0].toUpperCase() + username.slice(1)}</StyledTypography>
+          ) : (
+            <Link to={!loggedIn ? '/dashboard' : '#'}>{!loggedIn ? <StyledPets fontSize="large" /> : null}</Link>
+          )}
           <StyledTypography>
             Jackson's Pet Store
             {/* Show login or logout based on authorization of user*/}
