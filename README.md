@@ -42,7 +42,7 @@ npm install --global yarn
 yarn install
 ```
 
-Alternatively, you can delete the package-lock.json file and run the same commands with `npm`
+Alternatively, you can delete the `package-lock.json` file and run the same commands with `npm`
 
 ## Usage
   
