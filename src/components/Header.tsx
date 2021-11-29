@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // MUI imports (Material-UI)
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Home, Pets } from '@mui/icons-material';
+import { Pets } from '@mui/icons-material';
 // import MenuIcon from "@mui/icons-material/Menu"; // for future
 
 // Global State imports
