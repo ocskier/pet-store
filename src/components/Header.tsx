@@ -87,7 +87,7 @@ const StyledTypography = styled((props) => <Typography variant="h4" component="d
   },
 }));
 
-// Custom Brand container with auth button centered vertically
+// Custom username text when logged in
 const StyledLinkTypography = styled(StyledTypography)(({ theme }) => ({
   maxWidth: '8rem',
   marginTop: '0.3rem',
