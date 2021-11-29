@@ -37,7 +37,7 @@ export const Cols: GridColDef[] = [
         <StyledPicture>
           <source srcSet={fakePet} />
           {/* Temp conditional render due to anderson.info returning network error */}
-          <img src={row.photo.replace(/ /g, '%20')} alt={row.name} />
+          <img src={row.photo?.replace(/ /g, '%20')} alt={row.name} />
         </StyledPicture>
       </Avatar>
     ),
