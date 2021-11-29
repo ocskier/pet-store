@@ -48,7 +48,6 @@ export const Login = () => {
   // Event handler for changing permissions b/t admin and customer
   const handleRadioChange = (e: any) => {
     const { value } = e.target;
-    console.log(value);
     setPermissions(value);
   };
 
