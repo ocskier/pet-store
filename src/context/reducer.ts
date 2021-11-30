@@ -8,7 +8,7 @@ const reducer = (state: State, { type, payload }: Action) => {
       // spread user payload to new state, change login to true
       return { ...state, loggedIn: true, user: { ...payload } };
     case 'LOGOUT':
-      // empty user state value, change login to true
+      // empty user state value, change login to false
       return { ...state, loggedIn: false, user: null };
     case 'ME':
       // spread persisted user payload to new state, change login to true
